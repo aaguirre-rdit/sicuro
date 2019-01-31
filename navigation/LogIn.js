@@ -2,51 +2,62 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { LinearGradient } from 'expo';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import logInFacebook from '../constants/facebookLogin';
 export default class LogIn extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            SignUpSuccess: null
+            LoginSuccess: null
         }
+        this.logFacebook = this.logFacebook.bind(this);
     }
-    render(){
+     logFacebook(){
+         logInFacebook().then((result)=>{
+            if (result){
+                this.props.navigation.navigate('Main')
+            }
+        })
+
+    }
+    render() {
         const {navigate} = this.props.navigation;
-        return (
-            <LinearGradient
-                colors={[ '#01913d','#84f4b2', '#01913d']}
-                style={styles.container}>
-                <View>
+        if (this.state.SignUpSuccess === true) {
+            return navigate('Main')
+        } else {
+            return (
+                <LinearGradient
+                    colors={['#01913d', '#84f4b2', '#01913d']}
+                    style={styles.container}>
+                    <View>
 
 
-                    <View style={styles.signupcontainer}>
-                        <Text style={styles.signuptitle}>Log in</Text>
-                        <View style={styles.signupOptions}>
-                            <Text style={styles.signupwith}>Log in with:</Text>
-                            <Button title={'Facebook'} backgroundColor={'#3b5998'}
-                                    buttonStyle={styles.signupButton} raised
-                                    icon = {
-                                        <Icon
-                                            name="arrow-right"
-                                            size={15}
-                                            color="white"
-                                        />
-                                    }
-                            />
-                            <Button title={'Google'} backgroundColor={'red'}
-                                    buttonStyle={styles.signupButton} raised/>
-                            <Text style={{padding:10}}>Not registered yet?
-                                <Text style={styles.link}
-                                      onPress={()=>navigate('SignUp')}>Sign Up
-                                </Text>.</Text>
+                        <View style={styles.signupcontainer}>
+                            <Text style={styles.signuptitle}>Log in</Text>
+                            <View style={styles.signupOptions}>
+                                <Text style={styles.signupwith}>Log in with:</Text>
+                                <Button title={'Facebook'} backgroundColor={'#3b5998'}
+                                        buttonStyle={styles.signupButton}
+                                        raised
+                                        icon={{name: 'facebook', type: 'font-awesome'}}
+                                        onPress={this.logFacebook}
+                                />
+                                <Button title={'Google'} backgroundColor={'red'}
+                                        buttonStyle={styles.signupButton}
+                                        raised
+                                        icon={{name: 'google', type: 'font-awesome'}}
+                                />
+                                <Text style={{padding: 10}}>Not registered yet?
+                                    <Text style={styles.link}
+                                          onPress={() => navigate('SignUp')}> Sign Up
+                                    </Text>.</Text>
+                            </View>
+
                         </View>
 
                     </View>
-
-                </View>
-            </LinearGradient>
-        )
+                </LinearGradient>
+            )
+        }
     }
 }
 const styles = {
