@@ -1,5 +1,5 @@
 import { Facebook } from 'expo';
-import { Alert } from 'react-native';
+import keys from '../keys';
 async function logInFacebook() {
     try {
         const {
@@ -8,7 +8,7 @@ async function logInFacebook() {
             expires,
             permissions,
             declinedPermissions,
-        } = await Facebook.logInWithReadPermissionsAsync('1432566863546917', {
+        } = await Facebook.logInWithReadPermissionsAsync(keys.fb_appId, {
             permissions: ['public_profile'],
         });
         if (type === 'success') {
