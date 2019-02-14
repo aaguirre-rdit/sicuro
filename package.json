@@ -22,6 +22,10 @@
     "react-native-firebase": "^5.2.1",
     "react-native-firebase-mlkit": "^0.6.2",
     "react-native-google-signin": "^1.0.2",
+    "react-native-material-dialog": "^0.7.6",
+    "react-native-modal-selector": "^1.0.2",
+    "react-native-paper": "^2.11.0",
+    "react-native-simple-modal-picker": "^0.1.0",
     "react-native-tesseract-ocr": "^1.0.10",
     "react-navigation": "^2.18.2",
     "tesseract.js": "^1.0.14"
