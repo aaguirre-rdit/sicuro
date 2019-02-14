@@ -85,15 +85,20 @@ export default class TranslationScreen extends React.Component{
                         borderBottomColor:'#4dd698',
                         borderBottomWidth: 2}}>
                     <Text style={{marginTop: 14, fontSize:16}}>To:</Text>
-                    <Picker
-                        selectedValue={this.state.targetLang}
-                        style={{ height: 50, width: 200 }}
-                        onValueChange={(itemValue, itemIndex) => this.setState({targetLang: itemValue})}>
-                        <Picker.Item label="English" value="EN" />
-                        <Picker.Item label="Spanish" value="ES" />
-                        <Picker.Item label="Korean" value="KR" />
-                        <Picker.Item label="Japanese" value="JP" />
-                    </Picker>
+                        <ModalSelector
+                          data={languages}
+                          initValue="Select something yummy!"
+                          accessible={true}
+                          optionTextStyle	={{color:'#74269b',fontSize:18}}
+                          onChange={(option)=>{ this.setState({targetLang:option.label})}}>
+
+                            <TextInput
+                              style={{color:'#444',padding:15}}
+                              editable={false}
+                              placeholder="Select something yummy!"
+                              value={this.state.targetLang} />
+
+                        </ModalSelector>
                     </View>
                     <TextInput
                         numberOfLines={4}
