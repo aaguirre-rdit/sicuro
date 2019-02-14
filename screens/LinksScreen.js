@@ -5,6 +5,11 @@ import { ExpoLinksView } from '@expo/samples';
 import { Constants, Location, Permissions,MapView } from 'expo';
 
 export default class App extends React.Component {
+    static navigationOptions = {
+        title : null,
+        header:null,
+        footer:null
+    }
     constructor(props){
       super(props);
       this.state = {

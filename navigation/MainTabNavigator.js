@@ -1,12 +1,11 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import InfoCardScreen from '../screens/InfoCardScreen';
+import TranslationScreen from '../screens/TranslationScreen';
 import LabelRecognitionScreen from '../screens/LabelRecognitionScreen';
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -17,15 +16,22 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={'home'}
     />
   ),
 };
-
+const TranslationStack = createStackNavigator({
+  tabBarLabel: TranslationScreen,
+});
+TranslationStack.navigationOptions = {
+    tabBarLabel: 'Translate',
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+            focused={focused}
+            name={'translate'}
+        />
+    ),
+};
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 });
@@ -35,7 +41,7 @@ LinksStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-map' : 'md-map'}
+      name={'map'}
     />
   ),
 };
@@ -49,7 +55,7 @@ SettingsStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={'settings'}
     />
   ),
 };
@@ -63,7 +69,7 @@ LabelRecognitionStack.navigationOptions = {
     tabBarIcon: ({ focused }) => (
         <TabBarIcon
             focused={focused}
-            name={Platform.OS === 'ios' ? 'ios-aperture' : 'md-aperture'}
+            name={'settings-overscan'}
         />
     ),
 };
@@ -76,13 +82,14 @@ InfoCardStack.navigationOptions = {
     tabBarIcon: ({ focused }) => (
         <TabBarIcon
             focused={focused}
-            name={Platform.OS === 'ios' ? 'ios-browsers' : 'md-browsers'}
+            name={'content-copy'}
         />
     ),
 };
 export default createBottomTabNavigator({
   HomeStack,
     LabelRecognitionStack,
+    TranslationStack,
   LinksStack,
     InfoCardStack,
   SettingsStack
