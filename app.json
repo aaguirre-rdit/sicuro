@@ -23,7 +23,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "sicuroios",
+      "publishBundlePath": "ios/sicuro/Supporting/shell-app.bundle",
+      "publishManifestPath": "ios/sicuro/Supporting/shell-app-manifest.json"
+    },
+    "scheme": "exp43248be30d9c45139ade429c400235e9",
+    "android": {
+      "package": "host.exp.sicuro",
+      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
     }
   }
 }

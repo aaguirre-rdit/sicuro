@@ -8,14 +8,11 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
 import CameraScreen from './CameraScreen';
 import ImagePickerScreen from './ImagePickerScreen';
-import { MonoText } from '../components/StyledText';
 import { Header, Button } from 'react-native-elements';
 import ScanSettingsScreen from './ScanSettingsScreen';
 import * as RNTesseractOcr from 'react-native-tesseract-ocr';
-console.log('rn',RNTesseractOcr)
 export default class LabelRecognitionScreen extends React.Component {
     static navigationOptions = {
         title: 'Label Search',

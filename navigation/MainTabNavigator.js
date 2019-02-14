@@ -1,7 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
@@ -22,8 +20,8 @@ HomeStack.navigationOptions = {
     />
   ),
 };
-const TranslationStack = createBottomTabNavigator({
-  Translate : TranslationScreen,
+const TranslationStack = createStackNavigator({
+  tabBarLabel: TranslationScreen,
 });
 TranslationStack.navigationOptions = {
     tabBarLabel: 'Translate',
