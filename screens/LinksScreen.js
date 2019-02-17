@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, Text } from 'react-native';
 import { SearchBar } from 'react-native-elements'
 import { ExpoLinksView } from '@expo/samples';
 import { Constants, Location, Permissions,MapView } from 'expo';
 
 export default class App extends React.Component {
+
     static navigationOptions = {
-        title : null,
+        title : 'Links',
         header:null,
         footer:null
     }
@@ -49,11 +50,9 @@ export default class App extends React.Component {
                 }
             });
         });
-        //console.log('current loc',location)
-        //this.setState({ location });
+
     };
     render() {
-        console.log(this.state.location)
         return (
             <View style={styles.container}>
             <MapView
@@ -72,9 +71,14 @@ export default class App extends React.Component {
                     lightTheme
                     round
                     searchIcon={{ size: 24 }}
-                    containerStyle={{backgroundColor:'transparent'}}
+                    containerStyle={{backgroundColor:'transparent',marginTop:30,borderColor:'white',}}
                     inputContainerStyle={{backgroundColor:'#fff',width:50, fontSize:50}}
                     placeholder='Type Here...' />
+                    <ScrollView horizontal>
+                      <View style={styles.scrollMain}>
+                        <Text>Hola</Text>
+                      </View>
+                    </ScrollView>
             </View>
         );
     }
@@ -86,18 +90,29 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
+    display:'flex',
   },
     searchBar : {
       zIndex: 10,
     },
     mapContainer: {
         position: 'absolute',
-        top: 0,
+        top: '15%',
         left: 0,
         right: 0,
-        bottom: 0,
+        bottom: '20%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between'
-    }
+    },
+    scrollMain: {
+      position:'absolute',
+      zIndex:10,
+      backgroundColor:'rebeccapurple',
+      bottom:0,
+      height:'20%',
+      display:'flex',
+      flexDirection:'row',
+      color:'pink'
+    },
 });

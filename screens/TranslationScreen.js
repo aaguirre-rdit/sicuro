@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, StyleSheet, Picker} from 'react-native';
 import { Button, Text, Header } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
-
+import Colors from '../constants/Colors';
 const languages = [
     { key: 'EN', label: 'English' },
     { key: 'KR', label: 'Korean' },
@@ -15,8 +15,8 @@ export default class TranslationScreen extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            originLang : 'EN',
-            targetLang : 'ES',
+            originLang : 'English',
+            targetLang : 'Spanish',
         }
     }
     render (){
@@ -26,7 +26,7 @@ export default class TranslationScreen extends React.Component{
                     <View style={{
                         flexDirection:'row',
                         justifyContent: 'space-around',
-                        borderBottomColor:'#4dd698',
+                        borderBottomColor:Colors.darkGreen,
                         borderBottomWidth: 2
                     }}>
                     <Text style={{marginTop: 14, fontSize:16}}>From:</Text>
@@ -35,11 +35,11 @@ export default class TranslationScreen extends React.Component{
                           data={languages}
                           initValue="Select something yummy!"
                           accessible={true}
-                          optionTextStyle	={{color:'#74269b',fontSize:18}}
+                          optionTextStyle	={styles.pickerOptionText}
                           onChange={(option)=>{ this.setState({originLang:option.label})}}>
 
                             <TextInput
-                              style={{color:'#444',padding:15}}
+                              style={styles.pickerButton}
                               editable={false}
                               placeholder="Select something yummy!"
                               value={this.state.originLang} />
@@ -69,7 +69,7 @@ export default class TranslationScreen extends React.Component{
                 <Button
                     iconRight={{name: 'translate'}}
                     title="Translate"
-                    backgroundColor={'#3EB489'}
+                    backgroundColor={Colors.basePurple}
                     buttonStyle={{
                         width:200,
                         justifyContent: 'center',
@@ -82,18 +82,18 @@ export default class TranslationScreen extends React.Component{
                     <View style={{
                         flexDirection:'row',
                         justifyContent: 'space-around',
-                        borderBottomColor:'#4dd698',
+                        borderBottomColor:Colors.darkGreen,
                         borderBottomWidth: 2}}>
                     <Text style={{marginTop: 14, fontSize:16}}>To:</Text>
                         <ModalSelector
                           data={languages}
                           initValue="Select something yummy!"
                           accessible={true}
-                          optionTextStyle	={{color:'#74269b',fontSize:18}}
+                          optionTextStyle	={styles.pickerOptionText}
                           onChange={(option)=>{ this.setState({targetLang:option.label})}}>
 
                             <TextInput
-                              style={{color:'#444',padding:15}}
+                              style={styles.pickerButton}
                               editable={false}
                               placeholder="Select something yummy!"
                               value={this.state.targetLang} />
@@ -123,5 +123,14 @@ const styles = StyleSheet.create({
         borderColor: '#3EB489',
         borderWidth: 2,
         borderRadius:10,
-    }
+    },
+    pickerButton: {
+        color:'#444',
+        padding:15
+    },
+    pickerOptionText: {
+        color:'#74269b',
+        fontSize:18
+    },
+
 });
