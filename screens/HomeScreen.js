@@ -11,27 +11,20 @@ import {
   View,
 } from 'react-native';
 
-import { MonoText } from '../components/StyledText';
 import {Icon} from "react-native-elements";
-import SettingsScreen from "./SettingsScreen";
-
+import Header from '../components/MainHeader';
 export default class HomeScreen extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-
+        <Header navigation={this.props.navigation}/>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
           <View style={styles.contentContainer}>
             <Text style={styles.getStartedText}>HOME</Text>
+            <Text>News will go here</Text>
           </View>
-          <Button
-            onPress={() =>{
-              this.props.navigation.openDrawer();
-            }}
-            title="Go to Maps"
-          />
         </ScrollView>
 
 
@@ -63,8 +56,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   contentContainer: {
-    marginTop: 50,
-    backgroundColor:'pink',
+    marginTop: 0,
+    backgroundColor:'#fff',
   },
   getStartedText: {
     fontSize: 37,

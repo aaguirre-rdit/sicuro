@@ -8,6 +8,7 @@ import ScanScreen from '../screens/ScanScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CardScreen from '../screens/CardScreen';
 import MapScreen from '../screens/MapScreen';
+import Header from '../components/MainHeader';
 import DrawerComponent from '../components/DrawerComponent';
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -92,7 +93,7 @@ const tabNavigator = createBottomTabNavigator({
   ScanStack,
   CardStack,
   MapStack,
-});
+},);
 
 tabNavigator.path = '';
 
