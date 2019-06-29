@@ -1,13 +1,20 @@
 import React from 'react';
-import { ScrollView, StyleSheet, PickerIOS,Text,View } from 'react-native';
-import { CheckBox } from 'react-native-elements';
-import { Button } from 'react-native-elements';
+import { ScrollView, StyleSheet, Picker,Text,View } from 'react-native';
+import { Button, CheckBox, Overlay } from 'react-native-elements';
+import Colors from '../constants/Colors';
+import Animation from '../components/Animation';
+import Spinner from '../assets/animations/spinner.gif';
+import MainStyles from '../constants/Styles';
+class CardScreen extends React.Component {
 
-export default class CardScreen extends React.Component {
   constructor(props){
+
     super(props);
     this.state = {
       selectedLanguage:'eng',
+      loading:false,
+      cardContent:'',
+      submit:false,
       gluten:false,
       dairy:false,
       nuts:false,
@@ -16,28 +23,36 @@ export default class CardScreen extends React.Component {
       seafood:false
     }
   }
+  requestCard = ()=> {
+    this.setState({
+      submit:true,
+      loading:true
+    })
+    // ADD REQUEST
+  };
   render() {
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {/**
          * Go ahead and delete ExpoLinksView and replace it with your content;
          * we just wanted to provide you with some helpful links.
          */}
-         <View style={{flex:1}}>
+         <View style={{flex:1,textAlign:'center'}}>
         <Text>
           Select a language:
         </Text>
-        <PickerIOS
+        <Picker
           selectedValue={this.state.language}
-          style={{height: 50, width: 100}}
+          style={{height: 50, width: 200}}
           onValueChange={(lang, idx) =>
             this.setState({language: lang})
           }>
-          <PickerIOS.Item label={"English"} value={"eng"} />
-          <PickerIOS.Item label={"Spanish"} value={"spa"} />
-          <PickerIOS.Item label={'Korean'} value={'kor'}/>
-          <PickerIOS.Item label={'Japanese'} value={'jap'}/>
-        </PickerIOS>
+          <Picker.Item label={"English"} value={"eng"} />
+          <Picker.Item label={"Spanish"} value={"spa"} />
+          <Picker.Item label={'Korean'} value={'kor'}/>
+          <Picker.Item label={'Japanese'} value={'jap'}/>
+        </Picker>
          </View>
         <View style={styles.allergenView}>
           <Text>Select allergen(s)</Text>
@@ -47,7 +62,7 @@ export default class CardScreen extends React.Component {
             title='Gluten'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checkedColor={'red'} // Change this
+            checkedColor={Colors.AnalogousBlue} // Change this
             checked={this.state.gluten}
             onPress={() => this.setState({gluten: !this.state.gluten})}
           />
@@ -57,7 +72,7 @@ export default class CardScreen extends React.Component {
             title='Dairy'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checkedColor={'red'} // Change this
+            checkedColor={Colors.AnalogousBlue} // Change this
             checked={this.state.dairy}
             onPress={() => this.setState({dairy: !this.state.dairy})}
           />
@@ -67,7 +82,7 @@ export default class CardScreen extends React.Component {
             title='Nuts'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checkedColor={'red'} // Change this
+            checkedColor={Colors.AnalogousBlue} // Change this
             checked={this.state.nuts}
             onPress={() => this.setState({nuts: !this.state.nuts})}
           />
@@ -77,7 +92,7 @@ export default class CardScreen extends React.Component {
             title='Gluten'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checkedColor={'red'} // Change this
+            checkedColor={Colors.AnalogousBlue} // Change this
             checked={this.state.eggs}
             onPress={() => this.setState({eggs: !this.state.eggs})}
           />
@@ -87,7 +102,7 @@ export default class CardScreen extends React.Component {
             title='Soy'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checkedColor={'red'} // Change this
+            checkedColor={Colors.AnalogousBlue} // Change this
             checked={this.state.soy}
             onPress={() => this.setState({soy: !this.state.soy})}
           />
@@ -97,7 +112,7 @@ export default class CardScreen extends React.Component {
             title='Seafood'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'
-            checkedColor={'red'} // Change this
+            checkedColor={Colors.AnalogousBlue} // Change this
             checked={this.state.seafood}
             onPress={() => this.setState({seafood: !this.state.seafood})}
           />
@@ -105,9 +120,33 @@ export default class CardScreen extends React.Component {
         </View>
         <View style={styles.generationView}>
           <Button
+            buttonStyle={styles.buttonStyle}
             title={'Generate Card'}
+            onPress={this.requestCard}
           />
         </View>
+        {
+          this.state.submit && (
+            <Overlay
+              isVisible
+              borderRadius={10}
+              width='90%'
+              onBackdropPress={() => this.setState({ submit: false })}
+            >
+              <View>
+              {this.state.loading ?
+                <View style={MainStyles.SpinnerContainer}>
+                <Animation source={Spinner} style={
+                MainStyles.SpinnerStyle
+              }/></View> :
+                <View>
+                  {this.state.cardContent}
+                </View>
+              }
+              </View>
+            </Overlay>
+          )
+        }
       </ScrollView>
     );
   }
@@ -142,6 +181,15 @@ const styles = StyleSheet.create({
   checkboxContainer:{
     backgroundColor:'transparent',
     width:'40%',
-    height:60
+    height:60,
+    borderColor:'transparent'
+  },
+  buttonStyle:{
+    backgroundColor:Colors.tintColor,
+    borderRadius:25,
+    paddingVertical:10,
+    paddingHorizontal:20,
   }
 });
+
+export default CardScreen;
