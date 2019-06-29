@@ -9,6 +9,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import CardScreen from '../screens/CardScreen';
 import MapScreen from '../screens/MapScreen';
 import Header from '../components/MainHeader';
+import RestaurantScreen from '../screens/RestaurantScreen';
 import DrawerComponent from '../components/DrawerComponent';
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -74,6 +75,7 @@ CardStack.path = '';
 
 const MapStack = createStackNavigator({
     Map:MapScreen,
+    Restaurant:RestaurantScreen,
   },
   config
 );
