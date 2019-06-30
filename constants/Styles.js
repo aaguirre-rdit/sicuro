@@ -11,9 +11,31 @@ const SpinnerContainer = {
   alignItems:'center',
 };
 
+// HEADER
+
+const MainHeaderStyle = {
+  height:40,
+  width:'100%',
+  justifyContent:'flex-start',
+  alignItems:'flex-start'
+};
+
+const CarouselStyle = {
+  slide: {
+    width:'80%',
+    height:'50%',
+    backgroundColor:'pink'
+  },
+  title:{
+    fontSize:24,
+
+  }
+};
 export default {
   SpinnerContainer,
-  SpinnerStyle
+  SpinnerStyle,
+  MainHeaderStyle,
+  CarouselStyle
 }
 
 

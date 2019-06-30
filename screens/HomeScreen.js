@@ -13,11 +13,26 @@ import {
 
 import {Icon} from "react-native-elements";
 import Header from '../components/MainHeader';
+import Styles from '../constants/Styles';
+import Swiper from '../components/Swiper';
+import Demo from 'sicuro/assets/images/demo.png';
+const Entries = [{
+  title:'this is a title',
+  thumbnail:require('../assets/images/demo.png')
+},{
+  title:'this is a title',
+  thumbnail:Demo
+}];
+
 export default class HomeScreen extends React.Component{
   render(){
+    console.log(Styles.CarouselStyle);
     return (
       <View style={styles.container}>
-        <Header navigation={this.props.navigation}/>
+        {/*<View style={Styles.MainHeaderStyle}>*/}
+        <Header navigation={this.props.navigation} style={Styles.MainHeaderStyle}/>
+        {/*</View>*/}
+        <Swiper/>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>

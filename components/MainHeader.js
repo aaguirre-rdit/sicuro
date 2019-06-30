@@ -6,12 +6,7 @@ import { Button, Icon } from 'react-native-elements';
 const CustomHeader = props => {
   return (
     <View
-      style={{
-        height: 56,
-        marginTop: Platform.OS == "ios" ? 20 : 0,
-        alignItems:'flex-start',
-        width:'100%'
-      }}
+      style={props.style}
     >
         <Button
           onPress = {()=>props.navigation.openDrawer()}
