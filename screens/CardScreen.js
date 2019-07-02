@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Picker,Text,View } from 'react-native';
 import { Button, CheckBox, Overlay } from 'react-native-elements';
 import Colors from '../constants/Colors';
 import Animation from '../components/Animation';
-import Spinner from '../assets/animations/spinner.gif';
+import Spinner from '../assets/images/animations/spinner.gif';
 import MainStyles from '../constants/Styles';
 class CardScreen extends React.Component {
 

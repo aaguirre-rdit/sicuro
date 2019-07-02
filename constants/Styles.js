@@ -1,3 +1,4 @@
+import Colors from './Colors';
 // SPINNER
 const SpinnerStyle = {
   width:120,
@@ -31,11 +32,35 @@ const CarouselStyle = {
 
   }
 };
+
+// ICONS
+
+const vectorIconMain = {
+  textShadowColor: 'rgba(0, 0, 0, 0.5)',
+  textShadowOffset: {width: -1, height: 1},
+  textShadowRadius: 5,
+  background: 'linearGradient(180deg, #33DE4F 0%, rgba(8, 133, 103, 0.52) 100%)',
+};
+
+// Buttons
+
+const MainBtnStyle = {
+  title:{
+    color:Colors.white,
+  },
+  container:{
+    backgroundColor:Colors.tintColor,
+    borderRadius:25,
+    paddingHorizontal:30,
+  }
+};
 export default {
   SpinnerContainer,
   SpinnerStyle,
   MainHeaderStyle,
-  CarouselStyle
+  CarouselStyle,
+  vectorIconMain,
+  MainBtnStyle
 }
 
 
