@@ -1,13 +1,19 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View,Text } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  ActivityIndicator,
+  } from 'react-native';
+import {Picker} from 'react-native-picker-dropdown';
 import scantip from '../assets/images/scantip.png';
 import Animation from '../components/Animation';
-import { Icon, Button } from 'react-native-elements';
+import {Icon, Button, Image, Overlay} from 'react-native-elements';
 import MainStyles from '../constants/Styles';
-import { LinearGradient } from "expo/build/Svg.web";
-
+import _PickImage from '../components/ImagePicker';
 import Colors from "../constants/Colors";
-import * as ImagePicker from 'expo-image-picker';
+import Spinner from "../assets/images/animations/spinner.gif";
 
 export default class ScanScreen extends React.Component {
   constructor(props) {
@@ -16,54 +22,79 @@ export default class ScanScreen extends React.Component {
       photoUri:undefined,
       getSettings:false,
       submit:false,
-      result:undefined
+      result:undefined,
+      language:'eng',
+      allergen:undefined
     }
   }
-  selectPhoto = () => {
-    // TODO manage getting picture from camera roll
-    alert('select')
+  selectPhoto = async () => {
+    const result = await _PickImage()
+      .catch(err =>
+        console.log(err)
+      );
+    if (!result.cancelled){
+      this.setState({
+        photoUri:result.uri,
+        getSettings:true,
+        submit:false,
+        loading:false,
+      })
+    }
 
   };
   onSubmit = () => {
+    this.setState({
+      submit:true,
+      loading:true
+    })
     // TODO send picture and params to API to scan, then render result
+
   };
   render() {
     return (
-      <ScrollView style={styles.container}>
-        {/**
-         * Go ahead and delete ExpoLinksView and replace it with your content;
-         * we just wanted to provide you with some helpful links.
-         */}
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          width: '100%',
-          flex: 1,
-          paddingHorizontal: 20
-        }}>
-          <Icon
-            type={'antdesign'}
-            name={'bulb1'}
-            color={MainStyles.vectorIconMain.background}
-            iconStyle={MainStyles.vectorIconMain}
-          >
-          </Icon>
-          <Text
-            style={{fontSize: 20, fontWeight: "200", flex: 1, paddingLeft: 10}}
-          >
-            Tip
-          </Text>
-        </View>
-        <View style={{...styles.container, height: 250, alignItems: 'center'}}>
+      <ScrollView containerComponentStyle={styles.container}>
+        {!this.state.getSettings ?
+          <View style={{flex:1}}>
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+              width: '100%',
+              flex: 1,
+              paddingHorizontal: 20
+            }}>
+              <Icon
+                type={'antdesign'}
+                name={'bulb1'}
+                color={MainStyles.vectorIconMain.background}
+                iconStyle={MainStyles.vectorIconMain}
+              >
+              </Icon>
+              <Text
+                style={{fontSize: 20, fontWeight: "200", flex: 1, paddingLeft: 10}}
+              >
+                Tip
+              </Text>
+            </View>
+            <View style={{...styles.container, height: 250, alignItems: 'center'}}>
 
-          <Animation source={scantip} style={{width: 220, height: 220, flex: 1, margin: 'auto'}}/>
-        </View>
-        <Text
-          style={{fontSize: 14, fontWeight: "100", flex: 1, paddingHorizontal: 15, lineHeight: 25, textAlign: 'center'}}
-        >
-          Please ensure the picture you scan is as straight and clear as possible
-        </Text>
-        <View style={{alignItems: 'center', paddingTop: 20}}>
+              <Animation source={scantip} style={{width: 220, height: 220, flex: 1, margin: 'auto'}}/>
+            </View>
+            <Text
+              style={{fontSize: 14, fontWeight: "100", flex: 1, paddingHorizontal: 15, lineHeight: 25, textAlign: 'center'}}
+            >
+              Please ensure the picture you scan is as straight and clear as possible
+            </Text>
+          </View> :
+          <View style={{alignItems:'center',paddingTop:15}}>
+            <Image
+              source={{ uri: this.state.photoUri }}
+              style={{ width: 150, height: 150 }}
+              PlaceholderContent={<ActivityIndicator />}
+            />
+          </View>
+        }
+
+        <View style={{flex:1,alignItems: 'center', paddingTop: 20}}>
           <Button
             type={'outline'}
             buttonStyle={MainStyles.MainBtnStyle.container}
@@ -75,10 +106,72 @@ export default class ScanScreen extends React.Component {
               type: 'evilicon'
             }}
             titleStyle={MainStyles.MainBtnStyle.title}
-            title="Select photo"
+            title={this.state.getSettings ? 'Change photo' : 'Select photo'}
             onPress={this.selectPhoto}
           />
         </View>
+        {this.state.getSettings ?
+
+          <View style={{flex:1, alignItems: 'center', paddingTop: 20, textAlign:'center'}}>
+            <Text>Select a language:</Text>
+            <Picker
+              selectedValue={this.state.language}
+              style={{height: 70, width: 200,alignSelf:'center'}}
+              onValueChange={(lang, idx) =>
+                this.setState({language: lang})
+              }>
+              <Picker.Item label={"English"} value={"eng"} />
+              <Picker.Item label={"Spanish"} value={"spa"} />
+              <Picker.Item label={'Korean'} value={'kor'}/>
+              <Picker.Item label={'Japanese'} value={'jap'}/>
+            </Picker>
+            <Text>Select an allergen:</Text>
+            <Picker
+              selectedValue={this.state.allergen ? this.state.allergen : 'gluten'}
+              style={{height: 70, width: 200, alignSelf:'center'}}
+              onValueChange={(allergen, idx) =>
+                this.setState({allergen: allergen})
+              }>
+              <Picker.Item label={"Gluten"} value={"gluten"} />
+              <Picker.Item label={"Eggs"} value={"egg"} />
+              <Picker.Item label={'Dairy'} value={'dairy'}/>
+              <Picker.Item label={'Soy'} value={'soy'}/>
+              <Picker.Item label={'Nuts'} value={'nut'}/>
+              <Picker.Item label={'Seafood'} value={'seafood'}/>
+            </Picker>
+            <Button
+              //type={'outlined'}
+              buttonStyle={MainStyles.MainBtnStyle.container}
+              titleStyle={MainStyles.MainBtnStyle.title}
+              title={'Scan photo'}
+              onPress={this.onSubmit}
+            />
+            {
+              this.state.submit && (
+                <Overlay
+                  isVisible
+                  borderRadius={10}
+                  width='90%'
+                  onBackdropPress={() => this.setState({ submit: false })}
+                >
+                  <View>
+                    {this.state.loading ?
+                      <View style={MainStyles.SpinnerContainer}>
+                        <Animation source={Spinner} style={
+                          MainStyles.SpinnerStyle
+                        }/></View> :
+                      <View>
+                        {this.state.cardContent}
+                      </View>
+                    }
+                  </View>
+                </Overlay>
+              )
+            }
+          </View>
+        :
+        undefined}
+
       </ScrollView>
     );
   }

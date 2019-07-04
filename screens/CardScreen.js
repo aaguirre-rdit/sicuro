@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Picker,Text,View } from 'react-native';
+import { ScrollView, StyleSheet, Text,View } from 'react-native';
+import {Picker} from 'react-native-picker-dropdown';
 import { Button, CheckBox, Overlay } from 'react-native-elements';
 import Colors from '../constants/Colors';
 import Animation from '../components/Animation';
@@ -43,10 +44,11 @@ class CardScreen extends React.Component {
           Select a language:
         </Text>
         <Picker
-          selectedValue={this.state.language}
+          prompt={'Select language:'}
+          selectedValue={this.state.selectedLanguage}
           style={{height: 50, width: 200}}
           onValueChange={(lang, idx) =>
-            this.setState({language: lang})
+            this.setState({selectedLanguage: lang})
           }>
           <Picker.Item label={"English"} value={"eng"} />
           <Picker.Item label={"Spanish"} value={"spa"} />

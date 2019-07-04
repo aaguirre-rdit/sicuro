@@ -19,13 +19,7 @@ import Demo from 'sicuro/assets/images/demo.png';
 import Colors from "../constants/Colors";
 import { FlatList } from "react-navigation";
 import {MonoText} from "../components/StyledText";
-const Entries = [{
-  title:'this is a title',
-  thumbnail:require('../assets/images/demo.png')
-},{
-  title:'this is a title',
-  thumbnail:Demo
-}];
+import * as Permissions  from 'expo-permissions';
 
 export default class HomeScreen extends React.Component{
   constructor(props){
@@ -46,7 +40,18 @@ export default class HomeScreen extends React.Component{
       ]
     }
   }
-  componentDidMount(): void {
+  componentDidMount = async () => {
+
+    // TODO ask for permissions
+    const permission = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+    if (permission.status !== 'granted') {
+      const newPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (newPermission.status === 'granted') {
+        //its granted.
+      }
+    } else {
+      console.log(permission.status)
+    }
     // TODO add articles request call
 
   }
