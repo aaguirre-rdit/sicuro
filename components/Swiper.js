@@ -4,7 +4,9 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import Swiper from 'react-native-swiper'
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    position:'relative'
+  },
   slide1: {
     flex: 1,
     justifyContent: 'center',
@@ -35,8 +37,8 @@ export default class SwiperComponent extends Component {
     return (
       <Swiper style={styles.wrapper} showsButtons={false}>
         {this.props.entries ?
-          this.props.entries.map(data => (
-            <View style={{flex:1}}>
+          this.props.entries.map((data, index) => (
+            <View style={{flex:1}} key={`entry-${index}`}>
              <Image source={img} style={{width:'100%', height:'100%'}}/>
               <Text style={{position:'absolute', color:'white',fontSize:'23em', bottom:10}}>{data.text}</Text>
 
@@ -44,7 +46,7 @@ export default class SwiperComponent extends Component {
             )):
         <View style={styles.slide1}>
           <Image source={img} style={{width:'100%', height:'100%'}}/>
-          <Text style={{position:'absolute', color:'white',fontSize:'23em', bottom:10}}>Hello World</Text>
+          <Text style={{position:'absolute', color:'white',fontSize:23, bottom:10}}>Hello World</Text>
         </View>}
       </Swiper>
     )

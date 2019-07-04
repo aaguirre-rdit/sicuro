@@ -34,7 +34,16 @@ export default class HomeScreen extends React.Component{
       news:[{title:'title1', id:'adsf', intro:'ladsf asdfa adsf'},
         {title:'title2', id:'adsd', intro:'dssda fsdf adsf'},
         {title:'title3', id:'ad3d', intro:'erwer fsdf adsf'},
-        {title:'title4', id:'a4sd', intro:'rwerw fsdf erwer'}]
+        {title:'title4', id:'a4sd', intro:'rwerw fsdf erwer'}],
+      entries:[
+        {
+          title:'this is a title',
+          thumbnail:require('../assets/images/demo.png')
+        },{
+          title:'this is a title',
+          thumbnail:Demo
+        }
+      ]
     }
   }
   componentDidMount(): void {
@@ -49,7 +58,7 @@ export default class HomeScreen extends React.Component{
         {/*<View style={Styles.MainHeaderStyle}>*/}
         <Header navigation={this.props.navigation} style={Styles.MainHeaderStyle}/>
         {/*</View>*/}
-        <Swiper/>
+        <Swiper entries={this.state.entries}/>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
@@ -69,7 +78,7 @@ export default class HomeScreen extends React.Component{
                 style={{
                   backgroundColor:Colors.white,
                   textAlign:'center',
-                  position:'fixed',
+                  //position:'fixed',
                   fontSize:20,
                   marginBottom:-20,
                   height:30,
@@ -91,7 +100,9 @@ export default class HomeScreen extends React.Component{
             renderItem={(item) => {
               console.log(item.item)
               return(
-              <View style={{borderColor:Colors.AnalogousBlue,
+              <View
+                key={item.item.id}
+                style={{borderColor:Colors.AnalogousBlue,
                 borderRadius:10,
                 borderWidth:1,
                 marginVertical:5,

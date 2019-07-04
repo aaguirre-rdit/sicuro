@@ -5,7 +5,9 @@ import Animation from '../components/Animation';
 import { Icon, Button } from 'react-native-elements';
 import MainStyles from '../constants/Styles';
 import { LinearGradient } from "expo/build/Svg.web";
+
 import Colors from "../constants/Colors";
+import * as ImagePicker from 'expo-image-picker';
 
 export default class ScanScreen extends React.Component {
   constructor(props) {
@@ -47,7 +49,7 @@ export default class ScanScreen extends React.Component {
           >
           </Icon>
           <Text
-            style={{fontSize: 20, fontWeight: 200, flex: 1, paddingLeft: 10}}
+            style={{fontSize: 20, fontWeight: "200", flex: 1, paddingLeft: 10}}
           >
             Tip
           </Text>
@@ -57,7 +59,7 @@ export default class ScanScreen extends React.Component {
           <Animation source={scantip} style={{width: 220, height: 220, flex: 1, margin: 'auto'}}/>
         </View>
         <Text
-          style={{fontSize: 14, fontWeight: 100, flex: 1, paddingHorizontal: 15, lineHeight: 25, textAlign: 'center'}}
+          style={{fontSize: 14, fontWeight: "100", flex: 1, paddingHorizontal: 15, lineHeight: 25, textAlign: 'center'}}
         >
           Please ensure the picture you scan is as straight and clear as possible
         </Text>
