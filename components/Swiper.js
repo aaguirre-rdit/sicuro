@@ -40,7 +40,7 @@ export default class SwiperComponent extends Component {
           this.props.entries.map((data, index) => (
             <View style={{flex:1}} key={`entry-${index}`}>
              <Image source={img} style={{width:'100%', height:'100%'}}/>
-              <Text style={{position:'absolute', color:'white',fontSize:'23em', bottom:10}}>{data.text}</Text>
+              <Text style={{position:'absolute', color:'white',fontSize:23, bottom:10}}>{data.text}</Text>
 
             </View>
             )):
