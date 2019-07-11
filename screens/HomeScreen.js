@@ -19,13 +19,14 @@ import Demo from 'sicuro/assets/images/demo.png';
 import Colors from "../constants/Colors";
 import { FlatList } from "react-navigation";
 import {MonoText} from "../components/StyledText";
+import PostListItem from '../components/PostListItem';
 import * as Permissions  from 'expo-permissions';
 
 export default class HomeScreen extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      news:[{title:'title1', id:'adsf', intro:'ladsf asdfa adsf'},
+      news:[{title:'title1', id:'adsf', intro:'ladsf asdfa adsf',thumbnail:''},
         {title:'title2', id:'adsd', intro:'dssda fsdf adsf'},
         {title:'title3', id:'ad3d', intro:'erwer fsdf adsf'},
         {title:'title4', id:'a4sd', intro:'rwerw fsdf erwer'}],
@@ -105,17 +106,8 @@ export default class HomeScreen extends React.Component{
             renderItem={(item) => {
               console.log(item.item)
               return(
-              <View
-                key={item.item.id}
-                style={{borderColor:Colors.AnalogousBlue,
-                borderRadius:10,
-                borderWidth:1,
-                marginVertical:5,
-              padding:10}}>
-                <Text>{item.item.title}</Text>
-                <MonoText>{item.item.intro}</MonoText>
-                <Button title='see' onPress={()=>alert(item.item.id)}></Button>
-              </View>
+                <PostListItem item={item.item}/>
+
           )}}
           />
         </ScrollView>
@@ -126,11 +118,9 @@ export default class HomeScreen extends React.Component{
   }
 }
 
-HomeScreen.navigationOptions = {
-  title: 'Sicuro',
-};
 
 HomeScreen.navigationOptions = {
+  header:'Sicuro',
   title: 'Home',
   drawerLabel: 'Home',
   drawerIcon: ({ tintColor }) => (

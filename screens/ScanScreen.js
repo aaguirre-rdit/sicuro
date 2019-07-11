@@ -46,7 +46,16 @@ export default class ScanScreen extends React.Component {
     this.setState({
       submit:true,
       loading:true
-    })
+    });
+    setTimeout(()=>{
+      alert('change');
+      this.setState({
+        loading:false,
+        result:{
+          result:'unsafe'
+        }
+      })
+    },2000)
     // TODO send picture and params to API to scan, then render result
 
   };
@@ -161,7 +170,40 @@ export default class ScanScreen extends React.Component {
                           MainStyles.SpinnerStyle
                         }/></View> :
                       <View>
-                        {this.state.cardContent}
+                        {this.state.result ?
+                          this.state.result.result == 'safe' ?
+                            <View>
+                            <Icon
+                              name={'smileo'}
+                              type={'antdesign'}
+                              color={'green'}
+                              size={50}
+                            />
+                            </View>:
+                            this.state.result.result == 'unsafe' ?
+                              <View>
+                              <Icon
+                                name={'frowno'}
+                                type={'antdesign'}
+                                color={'red'}
+                                size={50}
+                              />
+                              </View>:
+                              this.state.result.result == 'danger' ?
+                                <Icon
+                                  name={'smileo'}
+                                  type={'antdesign'}
+                                  color={'green'}
+                                  size={50}
+                                /> :
+                                <Icon
+                                  name={'exclamationcircleo'}
+                                  type={'antdesign'}
+                                  color={'orange'}
+                                  size={50}
+                                /> :
+                          undefined
+                        }
                       </View>
                     }
                   </View>

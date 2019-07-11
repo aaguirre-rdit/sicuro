@@ -23,7 +23,7 @@ const HomeStack = createStackNavigator(
         Home: HomeScreen,
         Settings: SettingsScreen
       },{
-        contentComponent:DrawerComponent
+        contentComponent:DrawerComponent,
       })
     },
   },
