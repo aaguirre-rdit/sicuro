@@ -25,14 +25,13 @@ const TextContainer = styled.View`
 const Thumbnail = styled.Image`
  flex:2;
  height:100%;
- border:0.5px solid pink;
- border-bottom-left-radius:10%;
- border-top-left-radius:10%;
+ border-bottom-left-radius:10;
+ border-top-left-radius:10;
 `;
 const PostListItem = ({item,pressCb}) => {
   return (
     <Container onPress={pressCb}>
-      <Thumbnail  style={{elevation:0}} source={{uri:(item.thumbnail? item.thumbnail: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif')}}/>
+      <Thumbnail source={{uri:(item.thumbnail? item.thumbnail: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif')}}/>
       <TextContainer>
         <Text>{item.title}</Text>
         <Text>{item.intro}</Text>

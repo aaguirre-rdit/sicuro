@@ -7,7 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ScanScreen from '../screens/ScanScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CardScreen from '../screens/CardScreen';
-import MapScreen from '../screens/MapScreen';
+import RestaurantListScreen from '../screens/RestaurantListScreen';
 import Header from '../components/MainHeader';
 import RestaurantScreen from '../screens/RestaurantScreen';
 import DrawerComponent from '../components/DrawerComponent';
@@ -81,15 +81,15 @@ CardStack.navigationOptions = {
 CardStack.path = '';
 
 const MapStack = createStackNavigator({
-    Map:MapScreen,
+    Map:RestaurantListScreen,
     Restaurant:RestaurantScreen,
   },
   config
 );
 MapStack.navigationOptions = {
-  tabBarLabel : 'Map',
+  tabBarLabel : 'Restaurants',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} type='material-community' name={'map-search-outline'} />
+    <TabBarIcon focused={focused} type='material' name={'restaurant-menu'} />
   ),
 };
 
