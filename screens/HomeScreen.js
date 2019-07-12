@@ -18,7 +18,6 @@ import Swiper from '../components/Swiper';
 import Demo from 'sicuro/assets/images/demo.png';
 import Colors from "../constants/Colors";
 import { FlatList } from "react-navigation";
-import {MonoText} from "../components/StyledText";
 import PostListItem from '../components/PostListItem';
 import * as Permissions  from 'expo-permissions';
 
