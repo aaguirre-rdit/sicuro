@@ -7,7 +7,10 @@ const SearchContainer = styled.View`
   flex-direction:row;
   justify-content:space-between;
   alignItems:center;
-  
+  border:1px solid rgba(0,0,0,0.05);
+  border-top-color:transparent;
+  border-left-color:transparent;
+  border-right-color:transparent;
 `;
 export default class MapScreen extends React.Component{
   constructor(props){
@@ -30,7 +33,26 @@ export default class MapScreen extends React.Component{
       setTimeout(()=>
       this.setState({
         list:[
-          {name:'yamil'}
+          {
+            name:'yamil-1',
+            id:1
+          },
+          {
+            name:'yamil-2',
+            id:2
+          },
+          {
+            name:'yamil-3',
+            id:3
+          },
+          {
+            name:'yamil-4',
+            id:4
+          },
+          {
+            name:'yamil-5',
+            id:5
+          }
           ],
         loading:false
       }),3000)

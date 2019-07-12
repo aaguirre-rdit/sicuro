@@ -1,16 +1,29 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet,Text } from 'react-native';
 import Colors from '../constants/Colors';
-export default function RestScreen() {
-  return (
-    <ScrollView style={styles.container}>
-      {/**
-       * Go ahead and delete ExpoLinksView and replace it with your content;
-       * we just wanted to provide you with some helpful links.
-       */}
-
-    </ScrollView>
-  );
+export default class RestScreen extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      storeId:this.props.navigation.getParam('storeId',0)
+    }
+  }
+  componentDidMound(){
+    //TODO request restaurant data!
+  }
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        {/**
+         * Go ahead and delete ExpoLinksView and replace it with your content;
+         * we just wanted to provide you with some helpful links.
+         */}
+      <Text>
+        {this.state.storeId}
+      </Text>
+      </ScrollView>
+    );
+  }
 }
 
 RestScreen.navigationOptions = {
