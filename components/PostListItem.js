@@ -1,8 +1,8 @@
 import React from 'react';
 import {ActivityIndicator } from 'react-native';
-import {View, Text, Button, Image} from 'react-native-elements';
+import {View, Text, Button, Image, TouchableOpacity} from 'react-native-elements';
 import styled from 'styled-components';
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   width: 90%;
   border-radius:10;
   height: 100;
@@ -29,15 +29,15 @@ const Thumbnail = styled.Image`
  border-bottom-left-radius:10%;
  border-top-left-radius:10%;
 `;
-const PostListItem = ({item}) => {
+const PostListItem = ({item,pressCb}) => {
   return (
-    <Container>
+    <Container onPress={pressCb}>
       <Thumbnail  style={{elevation:0}} source={{uri:(item.thumbnail? item.thumbnail: 'https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif')}}/>
       <TextContainer>
         <Text>{item.title}</Text>
         <Text>{item.intro}</Text>
         <Text
-          onPress={()=>alert('link to page')}
+          onPress={pressCb}
         >Read more...</Text>
       </TextContainer>
     </Container>

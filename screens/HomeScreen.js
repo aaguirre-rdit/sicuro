@@ -106,7 +106,14 @@ export default class HomeScreen extends React.Component{
             renderItem={(item) => {
               console.log(item.item)
               return(
-                <PostListItem item={item.item}/>
+                <PostListItem item={item.item} pressCb={()=>{
+                  this.props.navigation.push(
+                    'Article',
+                    {
+                      articleId:item.item.id
+                    }
+                    )}
+                }/>
 
           )}}
           />
@@ -120,7 +127,7 @@ export default class HomeScreen extends React.Component{
 
 
 HomeScreen.navigationOptions = {
-  header:'Sicuro',
+  header:null,
   title: 'Home',
   drawerLabel: 'Home',
   drawerIcon: ({ tintColor }) => (

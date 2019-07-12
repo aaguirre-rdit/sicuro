@@ -20,10 +20,17 @@ const HomeStack = createStackNavigator(
   {
     Home: {
       screen: createDrawerNavigator({
-        Home: HomeScreen,
+        Home: {
+          screen: createStackNavigator({
+            Home: HomeScreen,
+            Article: SettingsScreen //TODO change for article screen later on!
+          })
+        },
         Settings: SettingsScreen
       },{
         contentComponent:DrawerComponent,
+        initialRouteName:'Home',
+        header:null,
       })
     },
   },
