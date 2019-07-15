@@ -26,8 +26,19 @@ const HomeStack = createStackNavigator(
           screen: createStackNavigator({
             Home: HomeScreen,
             Article: ArticleScreen
-          },{header:null,headerMode:'none'}
-          )
+          },
+            {
+              header:null,
+              headerMode:'none'
+            }
+          ),
+          navigationOptions:{
+            drawerIcon:
+            <Icon
+              type={'antdesign'}
+              name={'home'}
+            />
+          }
         },
         Settings: SettingsScreen
       },{
