@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container:{
     position:'relative',
     flex:1,
-    maxHeight:Layout.window.height / 3
+    height:Math.floor(Layout.window.height / 3)
   },
   slide1: {
     flex: 1,
