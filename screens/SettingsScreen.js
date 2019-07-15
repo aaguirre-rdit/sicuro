@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Button } from 'react-native';
-import { ExpoConfigView } from '@expo/samples';
 import { Icon } from 'react-native-elements';
+import MainHeader from '../components/MainHeader';
 export default class SettingsScreen extends React.Component {
   /**
    * Go ahead and delete ExpoConfigView and replace it with your content;
@@ -11,13 +11,13 @@ export default class SettingsScreen extends React.Component {
 
     return (
       <View>
+        <MainHeader drawer={true} title={'Settings'} navigation={this.props.navigation}/>
         <Button
           onPress={() =>
             this.props.navigation.openDrawer()
           }
           title="Go to Maps"
         />
-      <ExpoConfigView/>
       </View>
       );
   }
@@ -26,7 +26,7 @@ export default class SettingsScreen extends React.Component {
 SettingsScreen.navigationOptions = {
   title: 'Settings',
   drawerLabel: 'Settings',
-  drawerIcon: ({ tintColor }) => (
+  drawerIcon: () => (
     <Icon
       type={'material-community'}
       name={'settings-outline'}

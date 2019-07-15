@@ -25,7 +25,8 @@ export default function Drawer(props){
 }
 const styles = {
   drawerContainer:{
-    height:'100%',
+    paddingTop:50,
+    flex:1
   },
   bottomView: {
     width: '100%',

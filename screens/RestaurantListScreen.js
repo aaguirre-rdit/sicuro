@@ -89,8 +89,8 @@ export default class MapScreen extends React.Component{
           />
         </SearchContainer>
         <ScrollView>
-          {this.state.list.map(rest => (
-            <ListItem item={rest} navigation={this.props.navigation}/>
+          {this.state.list.map((rest,index) => (
+            <ListItem item={rest} navigation={this.props.navigation} key={index}/>
           ))}
         </ScrollView>
       </View>

@@ -61,7 +61,7 @@ export default class ScanScreen extends React.Component {
   };
   render() {
     return (
-      <ScrollView containerComponentStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {!this.state.getSettings ?
           <View style={{flex:1}}>
             <View style={{

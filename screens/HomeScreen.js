@@ -11,8 +11,8 @@ import {
   View,
 } from 'react-native';
 
-import {Icon} from "react-native-elements";
-import Header from '../components/MainHeader';
+import MainHeader from '../components/MainHeader';
+import { Header, Icon } from 'react-native-elements';
 import Styles from '../constants/Styles';
 import Swiper from '../components/Swiper';
 import Demo from 'sicuro/assets/images/demo.png';
@@ -57,12 +57,10 @@ export default class HomeScreen extends React.Component{
   }
 
   render(){
-    console.log(Styles.CarouselStyle);
     return (
       <View style={styles.container}>
-        {/*<View style={Styles.MainHeaderStyle}>*/}
-        <Header navigation={this.props.navigation} style={Styles.MainHeaderStyle}/>
-        {/*</View>*/}
+
+        <MainHeader drawer={true} title={'Home'} navigation={this.props.navigation}/>
         <Swiper entries={this.state.entries}/>
         <ScrollView
           style={styles.container}
@@ -126,7 +124,6 @@ export default class HomeScreen extends React.Component{
 
 
 HomeScreen.navigationOptions = {
-  header:null,
   title: 'Home',
   drawerLabel: 'Home',
   drawerIcon: ({ tintColor }) => (

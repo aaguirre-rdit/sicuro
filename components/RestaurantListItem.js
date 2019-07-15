@@ -20,9 +20,6 @@ const Thumbnail = styled.Image`
  flex:2;
  height:100%;
  width:100px;
- border:1px solid pink;
- border-bottom-left-radius:10;
- border-top-left-radius:10;
 `;
 const DataContainer = styled.View`
   flex:3;

@@ -2,22 +2,16 @@
 import React from "react";
 import { View, Platform } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { Button, Icon } from 'react-native-elements';
+import { Button, Icon, Header } from 'react-native-elements';
 const CustomHeader = props => {
   return (
-    <View
-      style={props.style}
-    >
-        <Button
-          onPress = {()=>props.navigation.openDrawer()}
-          type={'clear'}
-          icon = {<Icon
-            type={'material-community'}
-            name={'menu'}
-
-          />}
-        ></Button>
-    </View>
+    <Header
+      placement="left"
+      backgroundColor={'#fff'}
+      leftComponent={props.drawer?{ icon: 'menu', color: '#000',onPress:()=>props.navigation.openDrawer() }:undefined}
+      centerComponent={{ text: props.title, style: { color: '#000' } }}
+      //rightComponent={{ icon: 'home', color: '#fff' }}
+    />
   );
 };
 

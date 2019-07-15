@@ -8,9 +8,11 @@ import ScanScreen from '../screens/ScanScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CardScreen from '../screens/CardScreen';
 import RestaurantListScreen from '../screens/RestaurantListScreen';
-import Header from '../components/MainHeader';
+import ArticleScreen from '../screens/ArticleScreen';
 import RestaurantScreen from '../screens/RestaurantScreen';
 import DrawerComponent from '../components/DrawerComponent';
+import {Header,Icon} from "react-native-elements";
+import MainHeader from '../components/MainHeader';
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
@@ -23,22 +25,27 @@ const HomeStack = createStackNavigator(
         Home: {
           screen: createStackNavigator({
             Home: HomeScreen,
-            Article: SettingsScreen //TODO change for article screen later on!
-          })
+            Article: ArticleScreen
+          },{header:null,headerMode:'none'}
+          )
         },
         Settings: SettingsScreen
       },{
         contentComponent:DrawerComponent,
         initialRouteName:'Home',
-        header:null,
       })
     },
   },
-  config
+  {
+    headerMode:'none'
+  }
 );
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
+  header:(props)=><Header
+    leftComponent={{icon:'menu', color:'#000', onPress:()=>props.navigation.openDrawer()}}
+  />,
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -48,7 +55,7 @@ HomeStack.navigationOptions = {
   ),
 };
 
-HomeStack.path = '';
+HomeStack.path = 'home';
 
 const ScanStack = createStackNavigator(
   {
@@ -64,7 +71,7 @@ ScanStack.navigationOptions = {
   ),
 };
 
-ScanStack.path = '';
+ScanStack.path = 'scan';
 
 const CardStack = createStackNavigator({
   Cards:CardScreen,
@@ -93,7 +100,7 @@ MapStack.navigationOptions = {
   ),
 };
 
-MapStack.path = '';
+MapStack.path = 'map';
 
 
 
@@ -104,6 +111,6 @@ const tabNavigator = createBottomTabNavigator({
   MapStack,
 },);
 
-tabNavigator.path = '';
+tabNavigator.path = 'main';
 
 export default tabNavigator;

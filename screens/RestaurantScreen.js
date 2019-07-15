@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Text } from 'react-native';
+import { Card, Image } from 'react-native-elements';
 import Colors from '../constants/Colors';
 export default class RestScreen extends React.Component{
   constructor(props){
@@ -14,10 +15,9 @@ export default class RestScreen extends React.Component{
   render() {
     return (
       <ScrollView style={styles.container}>
-        {/**
-         * Go ahead and delete ExpoLinksView and replace it with your content;
-         * we just wanted to provide you with some helpful links.
-         */}
+        <View>
+
+        </View>
       <Text>
         {this.state.storeId}
       </Text>
