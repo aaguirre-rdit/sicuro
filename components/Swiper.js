@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import Layout from '../constants/Layout';
 
 import Swiper from 'react-native-swiper'
 
 const styles = StyleSheet.create({
   wrapper: {
-    position:'relative'
+    position:'relative',
+    flex:1
+  },
+  container:{
+    position:'relative',
+    flex:1,
+    maxHeight:Layout.window.height / 3
   },
   slide1: {
     flex: 1,
@@ -35,7 +42,7 @@ const img = require('../assets/images/demo.png');
 export default class SwiperComponent extends Component {
   render(){
     return (
-      <Swiper style={styles.wrapper} showsButtons={false}>
+      <Swiper style={styles.wrapper} containerStyle={styles.container} showsButtons={false}>
         {this.props.entries ?
           this.props.entries.map((data, index) => (
             <View style={{flex:1}} key={`entry-${index}`}>

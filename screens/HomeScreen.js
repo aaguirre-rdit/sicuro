@@ -1,13 +1,9 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
-  Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
-  Button,
-  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -61,7 +57,11 @@ export default class HomeScreen extends React.Component{
       <View style={styles.container}>
 
         <MainHeader drawer={true} title={'Home'} navigation={this.props.navigation}/>
-        <Swiper entries={this.state.entries}/>
+        <ScrollView style={{flex:1}}>
+          <View style={styles.container}>
+          <Swiper entries={this.state.entries}/>
+          </View>
+
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
@@ -116,7 +116,7 @@ export default class HomeScreen extends React.Component{
           />
         </ScrollView>
 
-
+        </ScrollView>
       </View>
     );
   }
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     backgroundColor:'#fff',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
   },
   getStartedText: {
     fontSize: 37,
