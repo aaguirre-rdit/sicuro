@@ -14,6 +14,7 @@ import MainStyles from '../constants/Styles';
 import _PickImage from '../components/ImagePicker';
 import Colors from "../constants/Colors";
 import Spinner from "../assets/images/animations/spinner.gif";
+import Layout from '../constants/Layout';
 
 export default class ScanScreen extends React.Component {
   constructor(props) {
@@ -63,7 +64,7 @@ export default class ScanScreen extends React.Component {
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {!this.state.getSettings ?
-          <View style={{flex:1}}>
+          <View style={{flex:this.state.getSettings ? 1 : 1.5}}>
             <View style={{
               flexDirection: 'row',
               justifyContent: 'flex-start',
@@ -84,17 +85,18 @@ export default class ScanScreen extends React.Component {
                 Tip
               </Text>
             </View>
-            <View style={{...styles.container, height: 250, alignItems: 'center'}}>
+            <View style={{flex:4,justifyContent:'center', alignItems: 'center'}}>
 
-              <Animation source={scantip} style={{width: 220, height: 220, flex: 1, margin: 'auto'}}/>
+              <Animation source={scantip} style={{width: 220, height:220,}}/>
+              <Text
+                style={{flex:3,fontSize: 14, fontWeight: "100", paddingHorizontal: 15, lineHeight: 25, textAlign: 'center'}}
+              >
+                {'Please ensure the picture you scan is as straight\nand clear as possible'}
+              </Text>
             </View>
-            <Text
-              style={{fontSize: 14, fontWeight: "100", flex: 1, paddingHorizontal: 15, lineHeight: 25, textAlign: 'center'}}
-            >
-              Please ensure the picture you scan is as straight and clear as possible
-            </Text>
+
           </View> :
-          <View style={{alignItems:'center',paddingTop:15}}>
+          <View style={{flex:1,alignItems:'center',paddingTop:15}}>
             <Image
               source={{ uri: this.state.photoUri }}
               style={{ width: 150, height: 150 }}
@@ -103,7 +105,7 @@ export default class ScanScreen extends React.Component {
           </View>
         }
 
-        <View style={{flex:1,alignItems: 'center', paddingTop: 20}}>
+        <View style={{flex:1,alignItems: 'center'}}>
           <Button
             type={'outline'}
             buttonStyle={MainStyles.MainBtnStyle.container}
@@ -121,7 +123,7 @@ export default class ScanScreen extends React.Component {
         </View>
         {this.state.getSettings ?
 
-          <View style={{flex:1, alignItems: 'center', paddingTop: 20, textAlign:'center'}}>
+          <View style={{flex:2, alignItems: 'center', textAlign:'center'}}>
             <Text>Select a language:</Text>
             <Picker
               selectedValue={this.state.language}

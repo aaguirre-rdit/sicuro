@@ -15,9 +15,7 @@ export default class RestScreen extends React.Component{
   render() {
     return (
       <ScrollView style={styles.container}>
-        <View>
 
-        </View>
       <Text>
         {this.state.storeId}
       </Text>

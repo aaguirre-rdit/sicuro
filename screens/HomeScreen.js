@@ -100,10 +100,10 @@ export default class HomeScreen extends React.Component{
             paddingHorizontal:10,
             paddingVertical:5}}
             data={this.state.news}
-            renderItem={(item) => {
+            renderItem={(item,index) => {
               console.log(item.item)
               return(
-                <PostListItem item={item.item} pressCb={()=>{
+                <PostListItem key={index} item={item.item} pressCb={()=>{
                   this.props.navigation.push(
                     'Article',
                     {
