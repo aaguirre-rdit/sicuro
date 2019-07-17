@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Button } from 'react-native';
 import { Icon } from 'react-native-elements';
-import MainHeader from '../components/MainHeader';
+import MainHeader from '../../components/MainHeader';
 export default class SettingsScreen extends React.Component {
   /**
    * Go ahead and delete ExpoConfigView and replace it with your content;

@@ -7,14 +7,14 @@ import {
   View,
 } from 'react-native';
 
-import MainHeader from '../components/MainHeader';
+import MainHeader from '../../components/MainHeader';
 import { Header, Icon } from 'react-native-elements';
-import Styles from '../constants/Styles';
-import Swiper from '../components/Swiper';
+import Styles from '../../constants/Styles';
+import Swiper from '../../components/Swiper';
 import Demo from 'sicuro/assets/images/demo.png';
-import Colors from "../constants/Colors";
+import Colors from "../../constants/Colors";
 import { FlatList } from "react-navigation";
-import PostListItem from '../components/PostListItem';
+import PostListItem from '../../components/PostListItem';
 import * as Permissions  from 'expo-permissions';
 
 export default class HomeScreen extends React.Component{
@@ -28,7 +28,7 @@ export default class HomeScreen extends React.Component{
       entries:[
         {
           title:'this is a title',
-          thumbnail:require('../assets/images/demo.png')
+          thumbnail:require('../../assets/images/demo.png')
         },{
           title:'this is a title',
           thumbnail:Demo

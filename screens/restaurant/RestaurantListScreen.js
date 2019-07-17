@@ -1,10 +1,10 @@
 import React from 'react';
-import ListItem from '../components/restaurant/RestaurantListItem';
+import ListItem from '../../components/restaurant/RestaurantListItem';
 import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {SearchBar, Button, Icon} from "react-native-elements";
 import styled from 'styled-components';
-import Colors from '../constants/Colors';
-import AddItem from '../components/restaurant/addItem';
+import Colors from '../../constants/Colors';
+import AddItem from '../../components/restaurant/addItem';
 const SearchContainer = styled.View`
   flex-direction:row;
   justify-content:space-between;

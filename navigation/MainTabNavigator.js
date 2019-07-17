@@ -3,13 +3,13 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator,createDrawerNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/Icons/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/main/HomeScreen';
 import ScanScreen from '../screens/ScanScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/main/SettingsScreen';
 import CardScreen from '../screens/CardScreen';
-import RestaurantListScreen from '../screens/RestaurantListScreen';
-import ArticleScreen from '../screens/ArticleScreen';
-import RestaurantScreen from '../screens/RestaurantScreen';
+import RestaurantListScreen from '../screens/restaurant/RestaurantListScreen';
+import ArticleScreen from '../screens/main/ArticleScreen';
+import RestaurantScreen from '../screens/restaurant/RestaurantScreen';
 import DrawerComponent from '../components/DrawerComponent';
 import {Header,Icon} from "react-native-elements";
 import MainHeader from '../components/MainHeader';

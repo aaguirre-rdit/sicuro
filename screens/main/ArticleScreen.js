@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Text, View } from 'react-native';
-import Colors from '../constants/Colors';
-import Header from '../components/MainHeader';
+import Colors from '../../constants/Colors';
+import Header from '../../components/MainHeader';
 export default class ArticleScreen extends React.Component{
   constructor(props){
     super(props);

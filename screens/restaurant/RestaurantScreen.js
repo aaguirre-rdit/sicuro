@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Text } from 'react-native';
 import { Card, Image } from 'react-native-elements';
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 export default class RestScreen extends React.Component{
   constructor(props){
     super(props);
