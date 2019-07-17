@@ -1,8 +1,10 @@
 import React from 'react';
-import ListItem from '../components/RestaurantListItem';
-import {ScrollView, View, Text} from 'react-native';
+import ListItem from '../components/restaurant/RestaurantListItem';
+import {ScrollView, View, Text, TouchableOpacity} from 'react-native';
 import {SearchBar, Button, Icon} from "react-native-elements";
 import styled from 'styled-components';
+import Colors from '../constants/Colors';
+import AddItem from '../components/restaurant/addItem';
 const SearchContainer = styled.View`
   flex-direction:row;
   justify-content:space-between;
@@ -18,10 +20,17 @@ export default class MapScreen extends React.Component{
     this.state = {
       list:[],
       search:'',
-      loading:false
+      loading:false,
+      openAddModal:false
     }}
   updateSearch = (search)=>{
     this.setState({search})
+  };
+  showAddModal = () => {
+    this.setState({
+      openAddModal:true
+    })
+
   };
   onSearch = () => {
     if (this.state.search.trim() !== ''){
@@ -38,7 +47,7 @@ export default class MapScreen extends React.Component{
             id:1
           },
           {
-            name:'yamil-2',
+            name:'yamil-',
             id:2
           },
           {
@@ -59,8 +68,9 @@ export default class MapScreen extends React.Component{
     }
   };
   render() {
+    console.log(this.state.openAddModal)
     return(
-      <View>
+      <View style={styles.viewContainer}>
         <SearchContainer>
           <SearchBar
             containerStyle={{
@@ -77,26 +87,65 @@ export default class MapScreen extends React.Component{
             value={this.state.search}
             onChangeText={this.updateSearch}
           />
+          <View>
           <Button
             type={'clear'}
+            raised
+            onPress={this.onSearch}
+            backgroundColor={Colors.tintColor}
             icon={
               <Icon
               type={'antdesign'}
               name={'search1'}
             />
             }
-            onPress={this.onSearch}
           />
+          </View>
         </SearchContainer>
         <ScrollView>
           {this.state.list.map((rest,index) => (
             <ListItem item={rest} navigation={this.props.navigation} key={index}/>
           ))}
         </ScrollView>
+        <View>
+        <TouchableOpacity
+          style={styles.floatingBottomBtn}
+          onPress={this.showAddModal}
+        >
+            <Icon
+              name={'add'}
+              type={'material'}
+              color={Colors.white}
+              size={30}
+            />
+        </TouchableOpacity>
+        </View>
+        <AddItem
+          isVisible={this.state.openAddModal}
+          onBdPress={()=>this.setState({openAddModal:false})}
+        />
+
       </View>
     )
   }
 }
+
+const styles = {
+  floatingBottomBtn:{
+    position:'absolute',
+    bottom:20,
+    justifyContent:'center',
+    right:20,
+    borderRadius:25,
+    width:50,
+    height:50,
+    backgroundColor:Colors.AnalogousGreen,
+  },
+  viewContainer:{
+    height:'100%',
+    flex:1,
+  }
+};
 
 MapScreen.navigationOptions = {
   title: 'Restaurant Search',

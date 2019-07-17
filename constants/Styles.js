@@ -12,6 +12,12 @@ const SpinnerContainer = {
   alignItems:'center',
 };
 
+// MAIN CONTAINER
+
+const mainView = {
+  flex:1,
+  backgroundColor:Colors.white,
+};
 // HEADER
 
 const MainHeaderStyle = {
@@ -23,6 +29,7 @@ const MainHeaderStyle = {
 
 const CarouselStyle = {
   slide: {
+    position:'relative',
     width:'80%',
     height:'50%',
     backgroundColor:'pink'
@@ -60,7 +67,8 @@ export default {
   MainHeaderStyle,
   CarouselStyle,
   vectorIconMain,
-  MainBtnStyle
+  MainBtnStyle,
+  mainView
 }
 
 
