@@ -10,7 +10,9 @@ const authNavigator = createStackNavigator({
     screen:SignUp
   }
 },{
-  initialRouteName:'logIn'
+  initialRouteName:'logIn',
+  headerMode:'none',
+  header:null
 });
 
 export default authNavigator;
