@@ -3,7 +3,7 @@ import { View,Text } from 'react-native';
 import { Input, Button, Icon, SocialIcon,Divider } from "react-native-elements";
 import Styles from '../../constants/Styles';
 import Colors from '../../constants/Colors';
-export default class LoginScreen extends React.Component {
+export default class SignupScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -12,18 +12,15 @@ export default class LoginScreen extends React.Component {
       errorMessage:''
     }
   }
-  onForgetPW = ()=> {
-    alert('puto pringado')
-    // TODO open modal to ask for email
-  };
 
-  loginFacebook = () => {
-    // TODO implement Fb login
+
+  signUpFacebook = () => {
+    // TODO implement Fb signup
   };
-  loginGoogle = () => {
-    // TODO implement Google login
+  signUpGoogle = () => {
+    // TODO implement Google signup
   };
-  loginStd = () => {
+  signUpStd = () => {
     // TODO implement standard login
     this.props.navigation.navigate('Main')
   };
@@ -51,12 +48,24 @@ export default class LoginScreen extends React.Component {
           }}
         >
           <Text>
-            Sign In
+            Sign Up
           </Text>
+          <Input
+            autoCompleteType={'email'}
+            label={'Name'}
+            placeholder={'Enter name'}
+            leftIcon={
+              {
+                name:'user',
+                size:20,
+                type:'antdesign',
+                color:'gray',
+              }
+            }
+          />
           <Input
             label={'Email'}
             placeholder={'Enter email'}
-            type={'email'}
             leftIcon={
               {
                 name:'email-outline',
@@ -70,52 +79,64 @@ export default class LoginScreen extends React.Component {
             label={'Password'}
             secureTextEntry
             placeholder={'Enter password'}
-            type={'password'}
-            leftIcon={{name:'lock', type:'antdesign',color:'gray',size:20}}
+            leftIcon={
+              {
+                name:'lock',
+                type:'antdesign',
+                color:'gray',
+                size:20}}
           />
-          <Text onPress={this.onForgetPW}>
-            Forgot your password?
-          </Text>
-        <View
-          style={styles.buttonView}
-        >
-          <Button
-            buttonStyle={styles.mainButton}
-            backgroundColor={Colors.tintColor}
-            onPress={this.loginStd}
-            title="Sign In"
+          <Input
+            label={'Confirm password'}
+            secureTextEntry
+            placeholder={'Re-enter password'}
+            leftIcon={
+              {
+                name:'lock',
+                type:'antdesign',
+                color:'gray',
+                size:20}}
           />
-        </View>
+          <View
+            style={styles.buttonView}
+          >
+            <Button
+              buttonStyle={styles.mainButton}
+              backgroundColor={Colors.tintColor}
+              onPress={this.loginStd}
+              title="Sign Up"
+            />
+          </View>
           <Divider style={{ backgroundColor: 'rgba(0,0,0,.3)' }} />
           <View style={{
             marginTop:20,
             alignItems:'center',
           }}>
-            <Text>Or sign in with:</Text>
+            <Text>Or sign up with:</Text>
             <View style={{
               flexDirection:'row',
               justifyContent:'space-around',
               alignItems:'center'}}>
-          <SocialIcon
-          title='Sign In With Facebook'
-          light
-          type='facebook'
-          onPress={this.loginFacebook}
-        />
-          <SocialIcon
-            light
-            iconStyle={{color:'red'}}
-            title='Sign In With Google'
-            type='google'
-            onPress={this.loginGoogle}
-          />
+              <SocialIcon
+                title='Sign In With Facebook'
+                light
+                type='facebook'
+                onPress={this.loginFacebook}
+              />
+              <SocialIcon
+                light
+                iconStyle={{color:'red'}}
+                title='Sign In With Google'
+                type='google'
+                onPress={this.loginGoogle}
+              />
             </View>
             <Text>
-              Not registered yet?
+              Already have an account?
               <Text
-                onPress={()=>this.props.navigation.navigate('signUp')}
+                onPress={()=>this.props.navigation.navigate('logIn')}
               >
-                Sign Up
+                Sign In
               </Text>
             </Text>
           </View>
