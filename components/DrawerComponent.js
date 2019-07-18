@@ -3,25 +3,28 @@ import {ScrollView, View } from "react-native";
 import { DrawerItems } from "react-navigation";
 import { Button } from 'react-native-elements';
 
-export default function Drawer(props){
+export default class Drawer extends React.Component{
+  logout = () => {
+    // TODO delete token and destroy in server too
+    this.props.navigation.navigate('logIn')
+  };
+  render(){
   return (
     <ScrollView
       contentContainerStyle={styles.drawerContainer}
     >
-      <DrawerItems {...props} />
+      <DrawerItems {...this.props} />
       <View
         style={styles.bottomView}
       >
       <Button
         color={'pink'}
         title={'logout'}
-        onPress={()=>{
-          alert('logout!')
-        }}
+        onPress={this.logout}
       ></Button>
       </View>
     </ScrollView>
-  )
+  )}
 }
 const styles = {
   drawerContainer:{
