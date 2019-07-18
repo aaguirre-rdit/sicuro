@@ -3,6 +3,8 @@ import { View,Text } from 'react-native';
 import { Input, Button, Icon, SocialIcon,Divider } from "react-native-elements";
 import Styles from '../../constants/Styles';
 import Colors from '../../constants/Colors';
+import loginFb from '../../utils/facebookLogin';
+
 export default class SignupScreen extends React.Component {
   constructor(props){
     super(props);
@@ -16,6 +18,12 @@ export default class SignupScreen extends React.Component {
 
   signUpFacebook = () => {
     // TODO implement Fb signup
+    loginFb()
+      .then(res=>{
+        const { user, token } = res;
+        console.log({token})
+
+      });
   };
   signUpGoogle = () => {
     // TODO implement Google signup
@@ -103,7 +111,7 @@ export default class SignupScreen extends React.Component {
             <Button
               buttonStyle={styles.mainButton}
               backgroundColor={Colors.tintColor}
-              onPress={this.loginStd}
+              onPress={this.signUpStd}
               title="Sign Up"
             />
           </View>
@@ -118,17 +126,17 @@ export default class SignupScreen extends React.Component {
               justifyContent:'space-around',
               alignItems:'center'}}>
               <SocialIcon
-                title='Sign In With Facebook'
+
                 light
                 type='facebook'
-                onPress={this.loginFacebook}
+                onPress={this.signUpFacebook}
               />
               <SocialIcon
                 light
                 iconStyle={{color:'red'}}
-                title='Sign In With Google'
+
                 type='google'
-                onPress={this.loginGoogle}
+                onPress={this.signUpGoogle}
               />
             </View>
             <Text>

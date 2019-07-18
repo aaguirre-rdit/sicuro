@@ -26,6 +26,9 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.gabac.sicuro"
+    },
     "facebookAppId": "317547078867057",
     "facebookDisplayName": "Sicuro",
     "facebookScheme": "fb317547078867057"
