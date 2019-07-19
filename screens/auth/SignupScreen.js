@@ -4,6 +4,7 @@ import { Input, Button, Icon, SocialIcon,Divider } from "react-native-elements";
 import Styles from '../../constants/Styles';
 import Colors from '../../constants/Colors';
 import loginFb from '../../utils/facebookLogin';
+import loginGoogle from '../../utils/googleLogin';
 
 export default class SignupScreen extends React.Component {
   constructor(props){
@@ -17,16 +18,19 @@ export default class SignupScreen extends React.Component {
 
 
   signUpFacebook = () => {
-    // TODO implement Fb signup
     loginFb()
       .then(res=>{
         const { user, token } = res;
         console.log({token})
-
+        // TODO send token and info to sicuro server
       });
   };
   signUpGoogle = () => {
     // TODO implement Google signup
+    loginGoogle().then(result => {
+      console.log(result);
+      // TODO send token and info to sicuro server
+    })
   };
   signUpStd = () => {
     // TODO implement standard login
