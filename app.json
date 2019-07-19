@@ -28,11 +28,6 @@
     },
     "android": {
       "package": "com.gabac.sicuro",
-      "config": {
-        "googleSignIn": {
-          "apiKey": "AIzaSyA6bAU_Skk9i4_H22qGCj5zPp0_NQfKV20"
-        }
-      }
     },
     "facebookAppId": "317547078867057",
     "facebookDisplayName": "Sicuro",

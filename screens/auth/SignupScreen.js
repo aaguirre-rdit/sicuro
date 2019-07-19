@@ -28,7 +28,7 @@ export default class SignupScreen extends React.Component {
   signUpGoogle = () => {
     // TODO implement Google signup
     loginGoogle().then(result => {
-      console.log(result);
+      console.log('tgg',result);
       // TODO send token and info to sicuro server
     })
   };
