@@ -110,7 +110,6 @@ class CardScreen extends React.Component {
           />
           <CheckBox
             containerStyle={styles.checkboxContainer}
-
             title='Seafood'
             checkedIcon='dot-circle-o'
             uncheckedIcon='circle-o'

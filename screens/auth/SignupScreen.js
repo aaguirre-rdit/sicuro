@@ -5,6 +5,10 @@ import Styles from '../../constants/Styles';
 import Colors from '../../constants/Colors';
 import loginFb from '../../utils/facebookLogin';
 import loginGoogle from '../../utils/googleLogin';
+import saveToken from '../../utils/saveToken';
+import Config from '../../config';
+import axios from 'axios';
+const {API_URL} = Config;
 
 export default class SignupScreen extends React.Component {
   constructor(props){
@@ -12,9 +16,28 @@ export default class SignupScreen extends React.Component {
     this.state = {
       loginSuccess:false,
       loginError:true,
-      errorMessage:''
+      errorMessage:'',
+      data:{
+        email:'',
+        username:'',
+        password1:'',
+        password2:''
+      }
     }
   }
+  updateSignUpData = (key,value) => {
+    const {data} = this.state;
+    value = value.trim();
+    if (value.length && typeof value == 'string'){
+      data[key] = value;
+      this.setState({
+        ...this.state,
+        data
+      })
+    }
+
+
+  };
 
 
   signUpFacebook = () => {
@@ -32,10 +55,24 @@ export default class SignupScreen extends React.Component {
       // TODO send token and info to sicuro server
     })
   };
-  signUpStd = () => {
+  signUpStd = async () => {
     // TODO implement standard login
-    this.props.navigation.navigate('Main')
+
+    const result = await axios.post(`${API_URL}/api/rest-auth/registration/`,this.state.data)
+    //this.props.navigation.navigate('Main')
+    const fetchRes = await fetch(`${API_URL}/api/rest-auth/registration/`, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, cors, *same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(this.state.data), // body data type must match "Content-Type" header
+    }).then(res=>res.json());
+    console.log({result,fetchRes})
   };
+
   render() {
 
     return (
@@ -63,9 +100,10 @@ export default class SignupScreen extends React.Component {
             Sign Up
           </Text>
           <Input
-            autoCompleteType={'email'}
-            label={'Name'}
-            placeholder={'Enter name'}
+            autoCompleteType={'username'}
+            label={'Username'}
+            placeholder={'Enter username'}
+            onChangeText={(username)=>this.updateSignUpData('username',username)}
             leftIcon={
               {
                 name:'user',
@@ -78,6 +116,7 @@ export default class SignupScreen extends React.Component {
           <Input
             label={'Email'}
             placeholder={'Enter email'}
+            onChangeText={(email)=>this.updateSignUpData('email',email)}
             leftIcon={
               {
                 name:'email-outline',
@@ -90,6 +129,7 @@ export default class SignupScreen extends React.Component {
           <Input
             label={'Password'}
             secureTextEntry
+            onChangeText={(password1)=>this.updateSignUpData('password1',password1)}
             placeholder={'Enter password'}
             leftIcon={
               {
@@ -101,6 +141,7 @@ export default class SignupScreen extends React.Component {
           <Input
             label={'Confirm password'}
             secureTextEntry
+            onChangeText={(password2)=>this.updateSignUpData('password2',password2)}
             placeholder={'Re-enter password'}
             leftIcon={
               {

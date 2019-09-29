@@ -61,9 +61,23 @@ const MainBtnStyle = {
     paddingHorizontal:30,
   }
 };
+const CheckboxContainer = {
+  backgroundColor:'transparent',
+    width:'40%',
+    height:60,
+    flex:1,
+    borderColor:'transparent'
+};
+const CheckContainer = {
+  flexDirection:'row',
+  flexWrap:'wrap',
+  justifyContent:'space-around'
+};
 export default {
   SpinnerContainer,
+  CheckboxContainer,
   SpinnerStyle,
+  CheckContainer,
   MainHeaderStyle,
   CarouselStyle,
   vectorIconMain,
