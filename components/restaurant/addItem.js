@@ -54,6 +54,7 @@ export default class AddItem extends React.Component{
           padding:0,
           marginTop:'20%',
           justifyContent:'center',
+          borderRadius:10,
           backgroundColor:Colors.white,
           alignSelf:'center'}}
       >
